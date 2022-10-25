@@ -1,6 +1,6 @@
 # Baza biblioteka 
 
-Aby pobrać bazę biblioteka należy wejść w link [http://anonco.pl/contents/sql/training-databases/library/script.zip](http://anonco.pl/contents/sql/training-databases/library/script.zip)
+Aby pobrać bazę biblioteka należy wejść w link [http://anonco.pl/contents/sql/training-databases/library/script.zip]([http://anonco.pl/contents/sql/training-databases/library/script.zip](http://anonco.pl/contents/sql/training-databases/library/script_structure_data.zip))
 
 I wykonać znaleziony tam skrypt.sql w SSMS
 
