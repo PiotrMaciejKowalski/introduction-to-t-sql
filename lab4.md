@@ -109,7 +109,7 @@ złotego srodka do rozwiazywania konfliktów interesów:
 
 Pamiętajmy zawsze zatem dobierać typ danych do naszych potrzeb.
 
-### Odnośniki
+## Odnośniki
 [Dokumentacja od typach w T-SQL](https://docs.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql)
 
 # Literały
@@ -127,16 +127,16 @@ niezrozumiała dla bazy SQL. Sensu nabiera po ich dodaniu.
 Przykładem literału jest `NULL` czyli wartość nieznana (czasem określana jako NA - not available). Ciekawostką 
 jest to, że NULL może wystąpić w dowolnym typie danych dostępnym w bazie. Wyjaśnia to również czemu podnosiliśmy
 że do sprawdzania warunków należy używać
-```
+```sql
 kolumna IS NULL
 ```
 zamiast potencjalnie źle działąjącego
-```
+```sql
 kolumna = NULL
 ```
 
 Polecam dla ćwiczenia sprawdzić sobie działanie takich dwóch zapytań
-```
+```sql
 SELECT case WHEN (NULL = NULL) THEN 1 ELSE 0 END
 SELECT case WHEN (NULL IS NULL) THEN 1 ELSE 0 END
 ```
@@ -146,7 +146,7 @@ SELECT case WHEN (NULL IS NULL) THEN 1 ELSE 0 END
 Podstawowymi literałami liczbowy są ... jawne ciągi cyfr. Warto jednak dla porządku podać, że
 występują jeszcze jawne wersje znakowe
 
-```
+```sql
 1234
 +1234
 -1234
@@ -154,7 +154,7 @@ występują jeszcze jawne wersje znakowe
 
 W przypadku liczb o typie decimals dopuszczalny jest jeszcze separator dziesiętny pod postacią kropki
 
-```
+```sql
 1234.56
 +1234.56
 -1234.56
@@ -162,7 +162,7 @@ W przypadku liczb o typie decimals dopuszczalny jest jeszcze separator dziesięt
 
 ## Literał typów zmienno przecinkowych
 
-``` 
+```sql
 1720
 172E1
 17.2E2
@@ -175,7 +175,7 @@ W przypadku liczb o typie decimals dopuszczalny jest jeszcze separator dziesięt
 
 Dodatkowo literały dla money mogą być poprzedzone znakiem $
 
-``` 
+```sql
 $1720
 ```
 
@@ -185,14 +185,14 @@ poza tym mają szablon zgodny z decimal - którym faktycznie są ...
 
 są to oczywiście literały w postaci ciągów znaków ograniczonych pojedynczym apostrofem
 
-```
+```sql
 'tekst'
 '01234'
 ```
 występują jednak jeszcze wersje dla szerszego typu danych dla liter NVARCHAR czyli z kodowaniem znaków unicode. 
 W tym kodowaniu zamiast pojedynczego bajtu na znak, używane są dwa bajty - co pozwala na składowanie znacznie 
 bogatszego w znaki ciągu. Czyli w szczególności posiadającego polskie znaki diakrytyczne 
-```
+```sql
 N'Łódź'
 ```
 
@@ -201,7 +201,7 @@ N'Łódź'
 Teoretycznie MS SQL Server wspiera podawanie literałów również dla wartości Dat i czasów. W praktyce jednak 
 jedynie daty uzyskane przez konwersję ciągu znaków na datę okazują się czytelne i niezawodne
 
-```
+```sql
 CONVERT(DATE,'17.02.2010', 104 )
 CONVERT(DATETIME,'17.02.2010 08:20:44', 120 ) 
 ```
@@ -212,13 +212,13 @@ Ostatni parametr to kod formatowania daty, który można odczytać z dokumantacj
 
 Aby przetestować poprawność literału można zbudować proste zapytania
 
-``` 
+```sql
 SELECT [literał]
 ```
 
 i zobaczyć czy został on poprawnie opracowany
 
-### Ćwiczenie
+## Ćwiczenie (Literały)
 
 Wykorzystać składnię do budowania literałów by potwierdzić, że np. nie pozwoli ona na stworzenie nieistniejącej
 daty.
@@ -248,11 +248,13 @@ ograniczenia dostępne w MSSQL
 * UNIQUE - wymusza by kolumna miała unikatowe wartości dla wszystkich rekordów.
 * IDENTITY - jak default ale wprowadza coraz to większe liczby
 
-# Komenda Insert 
+# Operacje DML
+
+## INSERT 
 
 Insert jest komendą służącą do wstawiania danych do bazy SQL. Posiada prostą składnię postaci
 
-```{}
+```sql
 INSERT INTO Nazwa_Tabeli[(Nazwy kolumn,...)] VALUES Lista_Wartosci_W_Nawiasach ;
 ```
 *UWAGA* Przy podawaniu nazwy tabeli może wystąpić kilka wersji - które różnie zadziałają 
@@ -271,18 +273,18 @@ W T-SQL występuje ponadto możliwość wykonania kopii pewnego zbioru danych po
 
 Składnia tej operacji jest łudząco podobna do operacji SELECT
 
-```{}
+```sql
 SELECT nazwy_kolumn,... Into nowa_tabela FROM TABELA ... 
 ```
 
 Końcowe ... oznaczają możliwość włączenia w to klauzuli WHERE albo i JOIN lub GROUP.
 
-# UPDATE
+## UPDATE
 
 Do modyfikowania danych używana jest z kolei komenda UPDATE.
 Również i ona posiada prostą składnię postaci:
 
-```{}
+```sql
 UPDATE Nazwa_Tabeli SET Kolumna1=Wartość1 [,Kolumna2=Wartość2], ...
 ```
 
@@ -290,7 +292,7 @@ UPDATE Nazwa_Tabeli SET Kolumna1=Wartość1 [,Kolumna2=Wartość2], ...
 (z reguły chcemy edytować tylko poszczególne rekordy, a nie ustawiać na wartość całe kolumny). 
 Najczęściej spotykana składnia to
 
-```{}
+```sql
 UPDATE Nazwa_Tabeli SET Kolumna=Wartość WHERE Id='Okreslone ID';
 ```
 
@@ -298,7 +300,7 @@ UPDATE Nazwa_Tabeli SET Kolumna=Wartość WHERE Id='Okreslone ID';
 
 Ostatnią operacją jest usuwanie elementów ze zbioru. Ona również cechuje się prostotą składni.
 
-```{}
+```sql
 DELETE FROM Nazwa_Tabeli ...
 ```
 
@@ -328,3 +330,44 @@ Do porównania działania DELETE i TRUNCATE można posłużyć się metaforą bu
 Bowiem by można wynając koparkę i pokolej - piętro po piętrze, ściana po ścianie przeprowadzać
 burzenie. To opcja DELETE, delikatna i precyzyjna. Można również podłożyć dynamit i cały dom zburzy się 
 od razu. To opcja TRUNCATE, całościowa i natychmiastowa.
+
+# Ćwiczenia
+
+Do realizacji ćwiczeń należy pobrać bazę danych Biblioteka dane o której znajdują się [tu](scripts/baza_biblioteka.md)
+a następnie zrealizować kolejna zadania
+
+## Zadanie 1 (rozgrzewka)
+
+Proszę odszukać wszystkie obecnie niezamknięte wypożyczenia
+
+## Zadanie 2 (rozgrzewka)
+
+Proszę stworzyć podsumowanie najczęściej wypożyczanych autorów. Wyświetlić 3 najczęściej wypożyczanych.
+
+## Zadanie 3 
+
+Odszukać czy w bazie znajdują się wszyscy wasi ulubieni autorzy. Jednego wybranego dodajcie.
+
+## Zadanie 4 
+
+Dodajcie dowolną książkę dodanego przez was autora.
+
+## Zadanie 5
+
+Odszukać czy w bazie znajdują się wszystkie wasze ulubione książki. Dodajcie dowolną książkę autora spoza bazy.
+
+## Zadanie 6 
+
+Utwórzcie swoje konto w dziale obsługi klienta. Stwórzcie następnie swoje konto czytelnicze i wypożyczcie 
+swoją ulubioną książkę.
+
+## Zadanie 7 
+
+Jakiś dowcipniś przeniósł wszystkie książki z działu Religie do Fantastyki. Trudno - baza ma być spójna.
+Przenieść wszystkie książki z działu religie do fantastyki.
+
+## Zadanie 8 
+
+Proszę usunąć autora swojej ulubionej książki (tej z poprzednich ćwiczeń) z bazy danych
+
+
