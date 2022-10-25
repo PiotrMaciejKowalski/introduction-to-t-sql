@@ -1,17 +1,8 @@
----
-title: "Lab 1"
-author: "Piotr Kowalski"
-date: "`r format(Sys.time(), '%d %B %Y')`"
-output: 
-  html_document:
-     toc: true
----
-
 # Uruchomienie i import danych
 
 * Uruchom SQL Server Management Studio (SSMS),
 * Połącz się do bazy danych zainstalowanej lokalnie na komputerze
-* Wykonaj plik Baza_Danych_Szpital.sql
+* Wykonaj plik szpital_init.sql
 
 # Wprowadzenie do SQL
 
@@ -66,7 +57,7 @@ SELECT * FROM Pacjenci
 
 ## SELECT z warunkiem WHERE
 
-Aby wskazać podzbiór interesujących nas danych dołączana jest specjalna klauzula WHERE nadając operacji SELECT następującą postać:
+Aby wskazać podzbiór interesujących nas danych dołączana jest specjalna klauzula WHERE nadając operacji SELECT następującą postać:
 
 ```
 SELECT [...kolumny] FROM [...tabele] WHERE [...warunki logiczne]

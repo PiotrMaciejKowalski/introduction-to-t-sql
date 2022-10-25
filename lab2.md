@@ -1,13 +1,5 @@
----
-title: "Lab 2"
-author: "Piotr Kowalski"
-date: "`r format(Sys.time(), '%d %B %Y')`"
-output: 
-  html_document:
-     toc: true
----
 
-# Lab 2
+# Wprowadzenie do SQL kontynuacja
 
 Poprowadźmy dyskusję
 
