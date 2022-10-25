@@ -1,12 +1,3 @@
----
-title: "Lab 3"
-author: "Piotr Kowalski"
-date: "`r format(Sys.time(), '%d %B %Y')`"
-output: 
-  html_document:
-     toc: true
----
-
 # Operacje JOIN
 
 Mając świadomość tego, że dane w bazach relacyjnych są w silnej dekompozycji, aby uzyskać odpowiedzi na co trudniejsze kwerendy, konieczne może okazać się złączenie. Operacja złączenia tworzy tymczasowe tabele o rekordach utworzonych na podstawie danych z tabel składowych przy określonym warunku połączenia. Składnia ma postać:
@@ -73,7 +64,7 @@ FULL OUTER JOIN Oddzialy ON Oddzialy.id = Lekarze.oddzial
 
 ## Ćwiczenie 
 
-Wykonajmy skrypt z katalogu lab 3 `add_szpital_data.sql` i powtórzmy zadanie.
+Wykonajmy skrypt z katalogu lab 3 `szpital_update.sql` i powtórzmy zadanie.
 
 
 ## Łączenie tabel w ralacji sam-ze-sobą.

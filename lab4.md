@@ -1,12 +1,3 @@
----
-title: "Lab 4"
-author: "Piotr Kowalski"
-date: "`r format(Sys.time(), '%d %B %Y')`"
-output: 
-  html_document:
-     toc: true
----
-
 # Operacje w składni DML
 
 Po poznaniu operacji `SELECT` stanowiącej podzbiów języka SQL - wyróżniany nazwą DQL - Data Query Language, 
