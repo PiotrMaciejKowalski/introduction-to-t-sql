@@ -302,6 +302,10 @@ SELECT * INTO KopiaProdukty FROM Produkty;
 ALTER TABLE KopiaProdukty ALTER COLUMN nazwa_prod char(100)
 ```
 
+### Check it yourself!
+
+A co by się stało gdyby skrócić nazwa_prod do 5 znaków?
+
 ```sql
 SELECT * FROM KopiaProdukty;
 ```
@@ -484,3 +488,44 @@ Aby skasować widok, przesyłamy do bazy danych komendę
 DROP VIEW MojeProdukty;
 ```
 
+# Zadania 
+
+## Zadanie 1
+
+Utworzyć zapytanie które w bazie danych biblioteka wybierze książki, 
+które były wypożyczane i policzy ilu krotnie. Niech wyświetlone zostaną 
+również dane ich autora. Ostatecznie niech będą uporządkowane malejąco 
+względem liczby wypożyczeń
+
+## Zadanie 2
+
+Utworzyć widok na podstawie powyższej kwerendy.
+
+## Zadanie 3
+
+Na podstawie widoku oraz tabel z bazy danych utworzyć zapytanie podsumowujące,
+które kategorie (wyświetlana nazwa) były najczęściej wypożyczane, ile tych wypożyczeń było, 
+oraz niech przedstawia dane uporządkowane malejąco względem liczby wypożyczeń.
+
+## Zadanie 4
+
+Na podstawie kwerendy z zadania 1 utworzyć tabelę techniką `SELECT INTO`. 
+Porównać zwracany przez nią początek tabeli z tym posiadanym przez Widok
+
+## Zadanie 5
+
+Stosując komendę `INSERT` wstawić 30 wypożyczeń wybranej przez siebie książki. Sprawdzić
+czy czołówka widoku z zadania 2 oraz tabeli z zadania 4 uległy zmianie.
+
+## Zadanie 6
+
+Wykonaj komendę `INSERT` do tabeli z zadania 4 oraz widoku z zadania 2
+
+## Zadanie 7
+
+Do tabeli z zadania 4 dodaj kolumnę `Nagłówek` i za pomocą `UPDATE` wstaw
+tam wartość połączonych pól imię autora, nazwisko autora oraz tytułu.
+
+## Zadanie 8
+
+Usuń utworzone widoki i tabele.
