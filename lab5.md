@@ -166,7 +166,8 @@ column_set_name XML COLUMN_SET FOR ALL_SPARSE_COLUMNS
 <partition_number_expression> TO <partition_number_expression>
 ```
 
-Tak zaprezentowana składnia pozwala nam co prawda dostrzec ogrom różnych możliwych w T-SQL opcji do uruchomienia, jednak zaciera nam ideę działania tej komendy. Przyjrzyjmy się prostszemu formatowi (są one w pliku, który tworzył nam bazę danych klientów)
+Tak zaprezentowana składnia pozwala nam co prawda dostrzec ogrom różnych możliwych w T-SQL opcji do 
+uruchomienia, jednak zaciera nam ideę działania tej komendy. Przyjrzyjmy się prostszemu formatowi.
 
 ```sql
 CREATE TABLE [dbo].[dostawcy](
@@ -204,7 +205,7 @@ Powyższa linijka definiuje więza integralności związane z kluczem. Utworzona
 
 ## ALTER TABLE
 
-Z reguły najcześciej wykorzystywaną komendą z DDL w odniesieniu do tablic jest polecie jej modyfikacji.
+Z reguły najcześciej wykorzystywaną komendą z DDL w odniesieniu do tablic jest polecenie jej modyfikacji.
 Najczęściej wykorzystywane jest ponieważ
 
 * Trzeba np. powiększyć zapas pamięci dla danego pola (jakieś dane się nie mieszczą),
@@ -218,6 +219,25 @@ Przykładowe formaty użycia
 SELECT * FROM Produkty;
 ```
 
+| id\_prod | id\_dost | nazwa\_prod | cena\_prod | opis\_prod |
+| :--- | :--- | :--- | :--- | :--- |
+| ANV01      | 1001 | Kowadlo .5 t                                                                                                                                                                                                                                                    | 5.99 | Kowadlo .5 t, czarne, w komplecie z uchwytem |
+| ANV02      | 1001 | Kowadlo 1 t                                                                                                                                                                                                                                                     | 9.99 | Kowadlo 1 t, czarne, w komplecie z uchwytem i futeralem |
+| ANV03      | 1001 | Kowadlo 2 t                                                                                                                                                                                                                                                     | 14.99 | Kowadlo 2 t, czarne, w komplecie z uchwytem i futeralem |
+| DTNTR      | 1003 | Detonator                                                                                                                                                                                                                                                       | 13.00 | Detonator \(zasilany tlokiem\), Lonty nie sa dolaczone |
+| FB         | 1003 | Karma dla ptaków                                                                                                                                                                                                                                                | 10.00 | Duza torba \(odpowiednia dla strusi\) |
+| FC         | 1003 | Marchewki                                                                                                                                                                                                                                                       | 2.50 | Marchewki \(tylko w sezonie polowan na króliki\) |
+| FU1        | 1002 | Lonty                                                                                                                                                                                                                                                           | 3.42 | tuzin, bardzo dlugie |
+| JP1000     | 1005 | JetPack 1000                                                                                                                                                                                                                                                    | 35.00 | JetPack 1000, przeznaczony do jednorazowego uzytku |
+| JP2000     | 1005 | JetPack 2000                                                                                                                                                                                                                                                    | 55.00 | JetPack 2000, do wielokrotnego uzytku |
+| OL1        | 1002 | Puszka oleju                                                                                                                                                                                                                                                    | 8.99 | Puszka oleju, czerwona |
+| SAFE       | 1003 | Sejf                                                                                                                                                                                                                                                            | 50.00 | Sejf z zamkiem szyfrowym |
+| SLING      | 1003 | Proca                                                                                                                                                                                                                                                           | 4.49 | Proca, rozmiar uniwersalny |
+| TNT1       | 1003 | Dynamit \(1 laska\)                                                                                                                                                                                                                                               | 2.50 | Dynamit, czerowy, jedna laska |
+| TNT2       | 1003 | Dynamit \(5 lasek\)                                                                                                                                                                                                                                               | 10.00 | Dynamit, czerwony, komplet 10 lasek |
+
+
+
 Dodajmy nową kolumnę
 
 ```sql
@@ -228,6 +248,23 @@ ALTER TABLE Produkty ADD NowaKolumna varchar(5);
 SELECT * FROM Produkty;
 ```
 
+| id\_prod | id\_dost | nazwa\_prod | cena\_prod | opis\_prod | NowaKolumna |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| ANV01      | 1001 | Kowadlo .5 t                                                                                                                                                                                                                                                    | 5.99 | Kowadlo .5 t, czarne, w komplecie z uchwytem | null |
+| ANV02      | 1001 | Kowadlo 1 t                                                                                                                                                                                                                                                     | 9.99 | Kowadlo 1 t, czarne, w komplecie z uchwytem i futeralem | null |
+| ANV03      | 1001 | Kowadlo 2 t                                                                                                                                                                                                                                                     | 14.99 | Kowadlo 2 t, czarne, w komplecie z uchwytem i futeralem | null |
+| DTNTR      | 1003 | Detonator                                                                                                                                                                                                                                                       | 13.00 | Detonator \(zasilany tlokiem\), Lonty nie sa dolaczone | null |
+| FB         | 1003 | Karma dla ptaków                                                                                                                                                                                                                                                | 10.00 | Duza torba \(odpowiednia dla strusi\) | null |
+| FC         | 1003 | Marchewki                                                                                                                                                                                                                                                       | 2.50 | Marchewki \(tylko w sezonie polowan na króliki\) | null |
+| FU1        | 1002 | Lonty                                                                                                                                                                                                                                                           | 3.42 | tuzin, bardzo dlugie | null |
+| JP1000     | 1005 | JetPack 1000                                                                                                                                                                                                                                                    | 35.00 | JetPack 1000, przeznaczony do jednorazowego uzytku | null |
+| JP2000     | 1005 | JetPack 2000                                                                                                                                                                                                                                                    | 55.00 | JetPack 2000, do wielokrotnego uzytku | null |
+| OL1        | 1002 | Puszka oleju                                                                                                                                                                                                                                                    | 8.99 | Puszka oleju, czerwona | null |
+| SAFE       | 1003 | Sejf                                                                                                                                                                                                                                                            | 50.00 | Sejf z zamkiem szyfrowym | null |
+| SLING      | 1003 | Proca                                                                                                                                                                                                                                                           | 4.49 | Proca, rozmiar uniwersalny | null |
+| TNT1       | 1003 | Dynamit \(1 laska\)                                                                                                                                                                                                                                               | 2.50 | Dynamit, czerowy, jedna laska | null |
+| TNT2       | 1003 | Dynamit \(5 lasek\)                                                                                                                                                                                                                                               | 10.00 | Dynamit, czerwony, komplet 10 lasek | null |
+
 Zupełnie analogicznie kolumnę można usunąć 
 
 ```sql
@@ -237,6 +274,24 @@ ALTER TABLE Produkty DROP COLUMN NowaKolumna;
 ```sql
 SELECT * FROM Produkty;
 ```
+
+| id\_prod | id\_dost | nazwa\_prod | cena\_prod | opis\_prod |
+| :--- | :--- | :--- | :--- | :--- |
+| ANV01      | 1001 | Kowadlo .5 t                                                                                                                                                                                                                                                    | 5.99 | Kowadlo .5 t, czarne, w komplecie z uchwytem |
+| ANV02      | 1001 | Kowadlo 1 t                                                                                                                                                                                                                                                     | 9.99 | Kowadlo 1 t, czarne, w komplecie z uchwytem i futeralem |
+| ANV03      | 1001 | Kowadlo 2 t                                                                                                                                                                                                                                                     | 14.99 | Kowadlo 2 t, czarne, w komplecie z uchwytem i futeralem |
+| DTNTR      | 1003 | Detonator                                                                                                                                                                                                                                                       | 13.00 | Detonator \(zasilany tlokiem\), Lonty nie sa dolaczone |
+| FB         | 1003 | Karma dla ptaków                                                                                                                                                                                                                                                | 10.00 | Duza torba \(odpowiednia dla strusi\) |
+| FC         | 1003 | Marchewki                                                                                                                                                                                                                                                       | 2.50 | Marchewki \(tylko w sezonie polowan na króliki\) |
+| FU1        | 1002 | Lonty                                                                                                                                                                                                                                                           | 3.42 | tuzin, bardzo dlugie |
+| JP1000     | 1005 | JetPack 1000                                                                                                                                                                                                                                                    | 35.00 | JetPack 1000, przeznaczony do jednorazowego uzytku |
+| JP2000     | 1005 | JetPack 2000                                                                                                                                                                                                                                                    | 55.00 | JetPack 2000, do wielokrotnego uzytku |
+| OL1        | 1002 | Puszka oleju                                                                                                                                                                                                                                                    | 8.99 | Puszka oleju, czerwona |
+| SAFE       | 1003 | Sejf                                                                                                                                                                                                                                                            | 50.00 | Sejf z zamkiem szyfrowym |
+| SLING      | 1003 | Proca                                                                                                                                                                                                                                                           | 4.49 | Proca, rozmiar uniwersalny |
+| TNT1       | 1003 | Dynamit \(1 laska\)                                                                                                                                                                                                                                               | 2.50 | Dynamit, czerowy, jedna laska |
+| TNT2       | 1003 | Dynamit \(5 lasek\)                                                                                                                                                                                                                                               | 10.00 | Dynamit, czerwony, komplet 10 lasek |
+
 
 Można również wykonać modyfikacje typu naszej bazy danych. Wykonajmy kopię danych aby nie spowodować utraty danych.
 ```sql
@@ -251,6 +306,24 @@ ALTER TABLE KopiaProdukty ALTER COLUMN nazwa_prod char(100)
 SELECT * FROM KopiaProdukty;
 ```
 
+| id\_prod | id\_dost | nazwa\_prod | cena\_prod | opis\_prod |
+| :--- | :--- | :--- | :--- | :--- |
+| ANV01      | 1001 | Kowadlo .5 t                                                                                         | 5.99 | Kowadlo .5 t, czarne, w komplecie z uchwytem |
+| ANV02      | 1001 | Kowadlo 1 t                                                                                          | 9.99 | Kowadlo 1 t, czarne, w komplecie z uchwytem i futeralem |
+| ANV03      | 1001 | Kowadlo 2 t                                                                                          | 14.99 | Kowadlo 2 t, czarne, w komplecie z uchwytem i futeralem |
+| DTNTR      | 1003 | Detonator                                                                                            | 13.00 | Detonator \(zasilany tlokiem\), Lonty nie sa dolaczone |
+| FB         | 1003 | Karma dla ptaków                                                                                     | 10.00 | Duza torba \(odpowiednia dla strusi\) |
+| FC         | 1003 | Marchewki                                                                                            | 2.50 | Marchewki \(tylko w sezonie polowan na króliki\) |
+| FU1        | 1002 | Lonty                                                                                                | 3.42 | tuzin, bardzo dlugie |
+| JP1000     | 1005 | JetPack 1000                                                                                         | 35.00 | JetPack 1000, przeznaczony do jednorazowego uzytku |
+| JP2000     | 1005 | JetPack 2000                                                                                         | 55.00 | JetPack 2000, do wielokrotnego uzytku |
+| OL1        | 1002 | Puszka oleju                                                                                         | 8.99 | Puszka oleju, czerwona |
+| SAFE       | 1003 | Sejf                                                                                                 | 50.00 | Sejf z zamkiem szyfrowym |
+| SLING      | 1003 | Proca                                                                                                | 4.49 | Proca, rozmiar uniwersalny |
+| TNT1       | 1003 | Dynamit \(1 laska\)                                                                                    | 2.50 | Dynamit, czerowy, jedna laska |
+| TNT2       | 1003 | Dynamit \(5 lasek\)                                                                                    | 10.00 | Dynamit, czerwony, komplet 10 lasek |
+
+
 Baza danych zrobi co tylko potrafi aby zachować nasze dane, w pewnym jednak momencie będzie zmuszona się poddać
 
 ```sql
@@ -263,6 +336,24 @@ Spowoduje błąd, gdyż dane mogą być przycięte.
 SELECT * FROM KopiaProdukty;
 ```
 
+| id\_prod | id\_dost | nazwa\_prod | cena\_prod | opis\_prod |
+| :--- | :--- | :--- | :--- | :--- |
+| ANV01      | 1001 | Kowadlo .5 t                                                                                         | 5.99 | Kowadlo .5 t, czarne, w komplecie z uchwytem |
+| ANV02      | 1001 | Kowadlo 1 t                                                                                          | 9.99 | Kowadlo 1 t, czarne, w komplecie z uchwytem i futeralem |
+| ANV03      | 1001 | Kowadlo 2 t                                                                                          | 14.99 | Kowadlo 2 t, czarne, w komplecie z uchwytem i futeralem |
+| DTNTR      | 1003 | Detonator                                                                                            | 13.00 | Detonator \(zasilany tlokiem\), Lonty nie sa dolaczone |
+| FB         | 1003 | Karma dla ptaków                                                                                     | 10.00 | Duza torba \(odpowiednia dla strusi\) |
+| FC         | 1003 | Marchewki                                                                                            | 2.50 | Marchewki \(tylko w sezonie polowan na króliki\) |
+| FU1        | 1002 | Lonty                                                                                                | 3.42 | tuzin, bardzo dlugie |
+| JP1000     | 1005 | JetPack 1000                                                                                         | 35.00 | JetPack 1000, przeznaczony do jednorazowego uzytku |
+| JP2000     | 1005 | JetPack 2000                                                                                         | 55.00 | JetPack 2000, do wielokrotnego uzytku |
+| OL1        | 1002 | Puszka oleju                                                                                         | 8.99 | Puszka oleju, czerwona |
+| SAFE       | 1003 | Sejf                                                                                                 | 50.00 | Sejf z zamkiem szyfrowym |
+| SLING      | 1003 | Proca                                                                                                | 4.49 | Proca, rozmiar uniwersalny |
+| TNT1       | 1003 | Dynamit \(1 laska\)                                                                                    | 2.50 | Dynamit, czerowy, jedna laska |
+| TNT2       | 1003 | Dynamit \(5 lasek\)                                                                                    | 10.00 | Dynamit, czerwony, komplet 10 lasek |
+
+
 ## Drop TABLE
 
 Na koniec usuńmy naszę kopię, pokazując, że DROP jest nam również znany.
@@ -273,7 +364,15 @@ DROP TABLE KopiaProdukty;
 
 # Czym są i czemu służą widoki
 
-w procesie projektowanie bazy dany wyszczególniane są często encje na bardzo ogólnym poziomie. Zadania postawione przed bazą danych wymagają aby dane były w odpowiedniej dekompozycji - celem optymalizacji i bezpieczeństwa ich przetwarzania. Do celów etapu projektowania nie jest jednak zaliczana prostota pracy z taką bazą danych. Do uzyskania istotnych dla nas informacji, trzeba dokonywać kaskad lub złączeń wielu zbiorów danych. Działanie w ten sposób jest zarówno trudno co mało wydajne. Rozwiązaniem tego problemu są widoki. Widoki często też nazywa się wirtualnymi tabelami. Wirtualnymi gdyż dane przez nie grupowane, nie są fizycznie gromadzone w ramach pojedynczej struktury w pamięci komputera. 
+w procesie projektowanie bazy dany wyszczególniane są często encje na bardzo ogólnym 
+poziomie. Zadania postawione przed bazą danych wymagają aby dane były w odpowiedniej
+dekompozycji - celem optymalizacji i bezpieczeństwa ich przetwarzania. Do celów etapu
+projektowania nie jest jednak zaliczana prostota pracy z taką bazą danych. Do 
+uzyskania istotnych dla nas informacji, trzeba dokonywać kaskad lub złączeń wielu
+zbiorów danych. Działanie w ten sposób jest zarówno trudne, co i mało wydajne. 
+Rozwiązaniem tego problemu są widoki. Widoki często też nazywa się wirtualnymi
+tabelami. Wirtualnymi gdyż dane przez nie grupowane, nie są fizycznie gromadzone
+w ramach pojedynczej struktury w pamięci komputera. 
 
 # Tworzenie widoków
 
@@ -284,16 +383,29 @@ CREATE VIEW NazwaWidoku AS SELECT ... ;
 ```
 
 Widok pozwala nam zatem utworzyć szybki dostęp do najczęściej stosowanych kwerend
-
-```sql
-drop view MojeProdukty;
-```
-
 Rozpocznijmy od utworzenie pewnej pożytecznej kwerendy. Np. połączmy w bazie klienci produkty z ich dostawcami
 
 ```sql
 SELECT p.id_prod AS Id, d.nazwa_dost AS Dostawca, p.nazwa_prod AS Produkt, p.cena_prod AS Cena, p.opis_prod AS Opis FROM Produkty p Left Join Dostawcy d ON p.id_dost=d.id_dost;
 ```
+
+| Id | Dostawca | Produkt | Cena | Opis |
+| :--- | :--- | :--- | :--- | :--- |
+| ANV01      | Anvils R Us                                        | Kowadlo .5 t                                                                                                                                                                                                                                                    | 5.99 | Kowadlo .5 t, czarne, w komplecie z uchwytem |
+| ANV02      | Anvils R Us                                        | Kowadlo 1 t                                                                                                                                                                                                                                                     | 9.99 | Kowadlo 1 t, czarne, w komplecie z uchwytem i futeralem |
+| ANV03      | Anvils R Us                                        | Kowadlo 2 t                                                                                                                                                                                                                                                     | 14.99 | Kowadlo 2 t, czarne, w komplecie z uchwytem i futeralem |
+| DTNTR      | ACME                                               | Detonator                                                                                                                                                                                                                                                       | 13.00 | Detonator \(zasilany tlokiem\), Lonty nie sa dolaczone |
+| FB         | ACME                                               | Karma dla ptaków                                                                                                                                                                                                                                                | 10.00 | Duza torba \(odpowiednia dla strusi\) |
+| FC         | ACME                                               | Marchewki                                                                                                                                                                                                                                                       | 2.50 | Marchewki \(tylko w sezonie polowan na króliki\) |
+| FU1        | LT Supplies                                        | Lonty                                                                                                                                                                                                                                                           | 3.42 | tuzin, bardzo dlugie |
+| JP1000     | Jet Set                                            | JetPack 1000                                                                                                                                                                                                                                                    | 35.00 | JetPack 1000, przeznaczony do jednorazowego uzytku |
+| JP2000     | Jet Set                                            | JetPack 2000                                                                                                                                                                                                                                                    | 55.00 | JetPack 2000, do wielokrotnego uzytku |
+| OL1        | LT Supplies                                        | Puszka oleju                                                                                                                                                                                                                                                    | 8.99 | Puszka oleju, czerwona |
+| SAFE       | ACME                                               | Sejf                                                                                                                                                                                                                                                            | 50.00 | Sejf z zamkiem szyfrowym |
+| SLING      | ACME                                               | Proca                                                                                                                                                                                                                                                           | 4.49 | Proca, rozmiar uniwersalny |
+| TNT1       | ACME                                               | Dynamit \(1 laska\)                                                                                                                                                                                                                                               | 2.50 | Dynamit, czerowy, jedna laska |
+| TNT2       | ACME                                               | Dynamit \(5 lasek\)                                                                                                                                                                                                                                               | 10.00 | Dynamit, czerwony, komplet 10 lasek |
+
 
 Kwerendę tę oczywiście można dowolnie rozbudować o restrykcje, grupowania czy podsumowania. My natomiast po prostu utwórzmy na jej podstawie widok
 
@@ -307,11 +419,38 @@ W efekcie czego możemy wykonywać
 SELECT * FROM MojeProdukty;
 ```
 
+| Id | Dostawca | Produkt | Cena | Opis |
+| :--- | :--- | :--- | :--- | :--- |
+| ANV01      | Anvils R Us                                        | Kowadlo .5 t                                                                                                                                                                                                                                                    | 5.99 | Kowadlo .5 t, czarne, w komplecie z uchwytem |
+| ANV02      | Anvils R Us                                        | Kowadlo 1 t                                                                                                                                                                                                                                                     | 9.99 | Kowadlo 1 t, czarne, w komplecie z uchwytem i futeralem |
+| ANV03      | Anvils R Us                                        | Kowadlo 2 t                                                                                                                                                                                                                                                     | 14.99 | Kowadlo 2 t, czarne, w komplecie z uchwytem i futeralem |
+| DTNTR      | ACME                                               | Detonator                                                                                                                                                                                                                                                       | 13.00 | Detonator \(zasilany tlokiem\), Lonty nie sa dolaczone |
+| FB         | ACME                                               | Karma dla ptaków                                                                                                                                                                                                                                                | 10.00 | Duza torba \(odpowiednia dla strusi\) |
+| FC         | ACME                                               | Marchewki                                                                                                                                                                                                                                                       | 2.50 | Marchewki \(tylko w sezonie polowan na króliki\) |
+| FU1        | LT Supplies                                        | Lonty                                                                                                                                                                                                                                                           | 3.42 | tuzin, bardzo dlugie |
+| JP1000     | Jet Set                                            | JetPack 1000                                                                                                                                                                                                                                                    | 35.00 | JetPack 1000, przeznaczony do jednorazowego uzytku |
+| JP2000     | Jet Set                                            | JetPack 2000                                                                                                                                                                                                                                                    | 55.00 | JetPack 2000, do wielokrotnego uzytku |
+| OL1        | LT Supplies                                        | Puszka oleju                                                                                                                                                                                                                                                    | 8.99 | Puszka oleju, czerwona |
+| SAFE       | ACME                                               | Sejf                                                                                                                                                                                                                                                            | 50.00 | Sejf z zamkiem szyfrowym |
+| SLING      | ACME                                               | Proca                                                                                                                                                                                                                                                           | 4.49 | Proca, rozmiar uniwersalny |
+| TNT1       | ACME                                               | Dynamit \(1 laska\)                                                                                                                                                                                                                                               | 2.50 | Dynamit, czerowy, jedna laska |
+| TNT2       | ACME                                               | Dynamit \(5 lasek\)                                                                                                                                                                                                                                               | 10.00 | Dynamit, czerwony, komplet 10 lasek |
+
+
 Nie ma również problemu aby wykonywać
 
 ```sql
 SELECT * FROM MojeProdukty WHERE Cena > 10;
 ```
+
+| Id | Dostawca | Produkt | Cena | Opis |
+| :--- | :--- | :--- | :--- | :--- |
+| ANV03      | Anvils R Us                                        | Kowadlo 2 t                                                                                                                                                                                                                                                     | 14.99 | Kowadlo 2 t, czarne, w komplecie z uchwytem i futeralem |
+| DTNTR      | ACME                                               | Detonator                                                                                                                                                                                                                                                       | 13.00 | Detonator \(zasilany tlokiem\), Lonty nie sa dolaczone |
+| JP1000     | Jet Set                                            | JetPack 1000                                                                                                                                                                                                                                                    | 35.00 | JetPack 1000, przeznaczony do jednorazowego uzytku |
+| JP2000     | Jet Set                                            | JetPack 2000                                                                                                                                                                                                                                                    | 55.00 | JetPack 2000, do wielokrotnego uzytku |
+| SAFE       | ACME                                               | Sejf                                                                                                                                                                                                                                                            | 50.00 | Sejf z zamkiem szyfrowym |
+
 
 # Modyfikowanie widoków
 
@@ -327,6 +466,15 @@ W efekcie czego
 ```sql
 SELECT * FROM MojeProdukty;
 ```
+
+| Id | Dostawca | Produkt | Cena | Opis |
+| :--- | :--- | :--- | :--- | :--- |
+| ANV03      | Anvils R Us                                        | Kowadlo 2 t                                                                                                                                                                                                                                                     | 14.99 | Kowadlo 2 t, czarne, w komplecie z uchwytem i futeralem |
+| DTNTR      | ACME                                               | Detonator                                                                                                                                                                                                                                                       | 13.00 | Detonator \(zasilany tlokiem\), Lonty nie sa dolaczone |
+| JP1000     | Jet Set                                            | JetPack 1000                                                                                                                                                                                                                                                    | 35.00 | JetPack 1000, przeznaczony do jednorazowego uzytku |
+| JP2000     | Jet Set                                            | JetPack 2000                                                                                                                                                                                                                                                    | 55.00 | JetPack 2000, do wielokrotnego uzytku |
+| SAFE       | ACME                                               | Sejf                                                                                                                                                                                                                                                            | 50.00 | Sejf z zamkiem szyfrowym |
+
 
 # Kasowanie widoków 
 
