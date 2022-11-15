@@ -72,4 +72,40 @@ głównego, zauważmy, że (przy założeniu poprawności) znająć pesel możem
 
 # Zadanie przykładowe
 
-![zadanie 1](https://ftims.edu.p.lodz.pl/pluginfile.php/195251/mod_page/content/1/Zrzut%20ekranu%202021-10-27%20o%2010.40.48.png)
+## Zadanie 1
+
+![zadanie 1](images/normalizacja1.png)
+
+Omów postać tego zbioru danych, oraz czynności jakie należałoby wykonać aby zapewnić 
+mu jak najlepszą postać normalną.
+
+## Zadanie 2
+
+| ID_zamówienia |  Kod_produktu | Nazwa_produktu                                                                   | ID_klienta| Dane osobowe|
+| --- | --- |----------------------------------------------------------------------------------| --- | --- |
+| 1 |  M24c | Monitor Arka7 24’                                                                |  21 | Sebastian Jolarek, Gdynia, ul. Krabowa 3|
+| 2 | Mikro_32| Mikrofala Astra 2                                                                | 3 | Kazimierz Wielki, Gdańsk, Ul. Bartolomea 1|
+| 3 | Mikro_32|  Mikrofala Astra 2                                                               | 5                                                                                | Bartosz Król, Kraków, ul. Paluszyńska 3 |
+| 4 | TV_50Plasm | Telewizor Orwell 1984, 50’ | 8 | Mariola Maciaszczyk, Dąbrówka Wielka, ul. Główna 12 | 
+| 5 | M32c |  Monitor ULTRAHD 32’ | 21  | Sebastian Jolarek, Gdynia, ul. Krabowa 3 |
+
+1. Jakie problemy możemy napotkać przy dodawaniu nowych
+informacji do bazy danych? Co z usuwaniem?
+1. Czy możemy uznać, że baza spełnia postulaty 1NF? Zaproponuj
+ewentualną modyfikację.
+1. Czy baza spełnia postulaty 2NF? Uzasadnij odpowiedź i
+zaproponuj ewentualne rozwiązanie tego problemu.
+1. Czy po wprowadzonych modyfikacjach baza spełnia postulaty
+3NF? Jeżeli nie, wprowadź stosowne modyfikacje do
+poprzedniego rozwiązania.
+
+## Zadanie 3
+
+Dokonaj normalizacji bazy danych zadanej w następujący sposób:
+
+| Nr albumu | Imię i nazwisko | Email | Przedmioty kursowe | Oceny |
+| ---       | ---             | ---   | ---                | ---   |
+| 100111 | Jacek Kaczmarski | 100111@edu.p.lodz.pl|  MD204 (Matematyka Dyskretna), SI204 (Sztuczna Inteligencja), IT221 (Technologie Informacyjne) | 3,3.5,3 |
+| 898989 | Krzysztof Marchewa | 898989@edu.p.lodz.pl|  TO223 (Teoria Operatorów), SE301 (Systemy Ekspertowe) | 4,4.5 |
+| 123321 | Barbara Tomaszewska | 123321@edu.p.lodz.pl|  SI204 (Sztuczna Inteligencja) | 5 |
+| 121212 | Milena Mroczek |  121212@edu.p.lodz.pl | MD204 (Matematyka Dyskretna), SI204 (Sztuczna Inteligencja), IT221 (Technologie Informacyjne) |4,2,5 |
