@@ -37,7 +37,7 @@ W zależności od rodzaju akcji informacje przekazane do triggera odnośnie reko
 zorganizowane są w tymczasowej tabeli odpowiednio
 
 * inserted
-* updated
+* ~~updated~~ (nie ma tabeli updated, jak pracować w triggerem UPDATE sprawdź w pliku [https://github.com/PiotrMaciejKowalski/introduction-to-t-sql/blob/main/examples/example-lab12.sql](https://github.com/PiotrMaciejKowalski/introduction-to-t-sql/blob/main/examples/example-lab12.sql)
 * deleted
 
 Jeśli chodzi o wybór chwili akcji interpretuje się je następująco
